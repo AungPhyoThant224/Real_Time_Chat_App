@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { prisma } from "../../../prisma/client.js";
 
-const JWT_SECRET = process.env.JWT_SECRET || "kbz_chat_secret_2026";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const register = async (req: Request, res: Response) => {
   const { email, password, role } = req.body;
@@ -43,7 +43,7 @@ export const login = async (req: Request, res: Response) => {
 
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      JWT_SECRET,
+      JWT_SECRET!,
       { expiresIn: "24h" },
     );
 
