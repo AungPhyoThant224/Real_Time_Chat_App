@@ -9,7 +9,10 @@ const io = new Server(httpServer, {
   cors: {
     origin: "*",
   },
-  connectionStateRecovery:{}
+  connectionStateRecovery:{
+    maxDisconnectionDuration: 2 * 60 * 1000,
+    skipMiddlewares: true,
+  }
 });
 
 io.use(socketAuthMiddleware);
