@@ -12,3 +12,9 @@ export const saveMessage = async (
     },
   });
 };
+
+export const getAdmin = async () => {
+  return await prisma.user.findFirst({
+    where: { role: "ADMIN" },
+  });
+}

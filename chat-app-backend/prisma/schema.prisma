@@ -19,13 +19,22 @@ enum Role {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  password  String
-  role      Role      @default(USER)
-  sentMsgs  Message[] @relation("SentMessages")
-  recvMsgs  Message[] @relation("ReceivedMessages")
-  createdAt DateTime  @default(now())
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  role          Role           @default(USER)
+  conversations Conversation[]
+  sentMsgs      Message[]      @relation("SentMessages")
+  recvMsgs      Message[]      @relation("ReceivedMessages")
+  createdAt     DateTime       @default(now())
+}
+
+model Conversation {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  user        User     @relation(fields: [userId], references: [id])
+  lastMessage String?  @db.Text
+  updatedAt   DateTime @updatedAt
 }
 
 model Message {
