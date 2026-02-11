@@ -5,8 +5,8 @@ export const socketAuthMiddleware = (
   socket: Socket,
   next: (err?: ExtendedError) => void,
 ) => {
-  // const token = socket.handshake.auth.token;
-  const token = socket.handshake.headers.authorization;
+  const token = socket.handshake.auth.token;
+  // const token = socket.handshake.headers.authorization;
 
   if (!token) return next(new Error("Authentication error"));
 

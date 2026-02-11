@@ -13,7 +13,7 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: (data: LoginFormData) => loginService.post(data),
     onSuccess: (response: Response<AuthResponse>) => {
-      Cookies.set("token", response.data.token, { expires: 7 });
+      Cookies.set("token", response.data.token, { expires: 1 });
       
       setUser({
         id: response.data.id,
