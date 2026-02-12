@@ -16,7 +16,7 @@ export const ChatBubble = ({ message }: { message: Message }) => {
         <time className="ml-1">{format(new Date(message.createdAt), "p")}</time>
       </div>
       <div className={cn(
-        "chat-bubble text-sm max-w-96",
+        "chat-bubble text-sm max-w-[85%] md:max-w-96",
         isMe ? "chat-bubble-primary" : "chat-bubble-secondary"
       )}>
         {message.content}

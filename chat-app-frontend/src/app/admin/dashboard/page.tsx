@@ -5,7 +5,6 @@ const page = () => {
     
   return (
     <>
-      <Header header="Admin"/>
       <ChatWindow />
     </>
   );
