@@ -7,8 +7,8 @@ export const useConversation = () => {
         queryKey: ["conversations"],
         queryFn: ({ pageParam = 1 }) => conversationService.getAll({params: { page: pageParam, limit: 10 }}),
         getNextPageParam: (lastPage: PaginatedResponse<Conversation>) => {
-            const { currentPage, limit } = lastPage.meta;
-            if (lastPage.data.length < limit) {
+            const { currentPage, hasMore } = lastPage.meta;
+            if (!hasMore) {
                 return undefined;
             }
             return currentPage + 1;

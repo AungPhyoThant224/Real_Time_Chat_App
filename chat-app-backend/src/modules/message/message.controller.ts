@@ -10,6 +10,10 @@ export const getMessageHistory = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
 
     const admin = await getAdmin();
+    if (!admin) {
+      return res.status(500).json({ error: "Internal server error." });
+    }
+
     if (currentUser.role === "USER") {
       if (!admin) {
         return res.status(403).json({ error: "Access denied." });
@@ -26,7 +30,7 @@ export const getMessageHistory = async (req: Request, res: Response) => {
         message: "Messages fetched successfully.",
         data: messages,
         meta: {
-          page,
+          currentPage:page,
           limit,
           total: messages.length,
           hasMore: messages.length === limit,
@@ -35,7 +39,7 @@ export const getMessageHistory = async (req: Request, res: Response) => {
     }
 
     const messages = await getMessages({
-      userId: currentUser.id,
+      userId: admin.id,
       otherUserId: otherUserId,
       page,
       limit,
@@ -45,7 +49,7 @@ export const getMessageHistory = async (req: Request, res: Response) => {
       message: "Messages fetched successfully.",
       data: messages,
       meta: {
-        page,
+        currentPage: page,
         limit,
         total: messages.length,
         hasMore: messages.length === limit,

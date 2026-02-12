@@ -1,4 +1,5 @@
 'use client';
+import { ChatWindow } from "@/components/chat/ChatWindow";
 import { ConnectionStatus } from "@/components/chat/ConnectionStatus";
 import SocketService from "@/socket/socket";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -14,8 +15,9 @@ const page = () => {
     }
   return (
     <>
-      <ConnectionStatus />
-      <button onClick={handleLogout}>Logout</button>
+      {/* <ConnectionStatus />
+      <button onClick={handleLogout}>Logout</button> */}
+      <ChatWindow />
     </>
   );
 };

@@ -49,7 +49,7 @@ export const login = async (req: Request, res: Response) => {
 
     res.json({
       message: "Login successful.",
-      data: { token, role: user.role, email: user.email },
+      data: { token, id: user.id, role: user.role, email: user.email },
     });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error." });

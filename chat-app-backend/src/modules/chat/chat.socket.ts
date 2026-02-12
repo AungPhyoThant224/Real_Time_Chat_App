@@ -29,10 +29,7 @@ export const registerChatHandlers = (io: Server, socket: Socket) => {
       lastMessage: data.content,
     });
 
-    io.to("admins").emit("new_user_message", {
-      msg,
-      senderEmail: email,
-    });
+    io.to("admins").emit("new_user_message", msg);
   });
 
   socket.on(

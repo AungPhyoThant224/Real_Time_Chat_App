@@ -16,7 +16,7 @@ export const getConversationList = async (req: Request, res: Response) => {
       message: "Conversations fetched successfully.",
       data: conversations,
       meta: {
-        page,
+        currentPage: page,
         limit,
         total: conversations.length,
         hasMore: conversations.length === limit,

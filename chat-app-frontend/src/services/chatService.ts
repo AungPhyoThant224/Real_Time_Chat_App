@@ -6,5 +6,5 @@ export const conversationService = new APIClient<
 >("/conversations");
 
 export const messageService = new APIClient<PaginatedResponse<Message>>(
-  "/messages",
+  "/messages/history",
 );

@@ -44,6 +44,8 @@ export interface PaginatedResponse<T> {
   meta: {
     currentPage: number;
     limit: number;
-    totalCount?: number;
+    total?: number;
+    hasMore: boolean;
+    lastMessageId?: number;
   };
 }
