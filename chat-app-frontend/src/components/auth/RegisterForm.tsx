@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, RegisterFormData } from "@/lib/validations";
-import { useRegister } from "@/hooks/useRegisterQuery";
+import { useRegister } from "@/hooks/query/useRegisterQuery";
 import { cn } from "@/lib/utils"; // Your clsx + twMerge helper
 
 export const RegisterForm = () => {

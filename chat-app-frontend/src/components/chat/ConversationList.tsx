@@ -1,6 +1,6 @@
 "use client";
-import { useConversation } from "@/hooks/useConversationQuery";
-import { useConversationSync } from "@/hooks/useConversationSync";
+import { useConversation } from "@/hooks/query/useConversationQuery";
+import { useConversationSync } from "@/hooks/query/useConversationSync";
 import { cn } from "@/lib/utils";
 import { useChatStore } from "@/store/useChatStore";
 import { formatDistanceToNow } from "date-fns";

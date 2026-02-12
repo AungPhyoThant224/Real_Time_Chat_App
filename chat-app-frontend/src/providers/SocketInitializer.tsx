@@ -1,5 +1,5 @@
 'use client';
-import { useSocket } from "@/hooks/useSocket";
+import { useSocket } from "@/hooks/socket/useSocket";
 import React, { use } from "react";
 
 const SocketInitializer = ({ children }: { children: React.ReactNode }) => {

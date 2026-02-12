@@ -1,5 +1,5 @@
 'use client';
-import { useLogin } from "@/hooks/useLoginQuery";
+import { useLogin } from "@/hooks/query/useLoginQuery";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginFormData } from "@/lib/validations";
 import React from "react";

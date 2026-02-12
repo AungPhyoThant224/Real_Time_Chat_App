@@ -3,15 +3,20 @@
 import { useEffect } from "react";
 import SocketService from "@/socket/socket";
 import { useChatStore } from "@/store/useChatStore";
-import { useAuthStore } from "@/store/useAuthStore";
+import { useHydratedAuth } from "@/hooks/store/useHydrateAuth";
 
 export const useSocket = () => {
   const { setStatus } = useChatStore();
-  const { user } = useAuthStore();
+  const { user, hydrated } = useHydratedAuth();
   const socket = SocketService.getInstance();
 
   useEffect(() => {
-    if (!user) return;
+    console.log("Use Socket");
+    
+    if (!user || !hydrated) {
+      socket.disconnect();
+      return;
+    }
 
     socket.connect();
 
