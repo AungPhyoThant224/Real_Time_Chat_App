@@ -41,7 +41,7 @@ export interface Response<T> {
 export interface PaginatedResponse<T> {
   message: string;
   data: T[];
-  meta?: {
+  meta: {
     currentPage: number;
     limit: number;
     totalCount?: number;

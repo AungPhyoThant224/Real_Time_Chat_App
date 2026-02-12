@@ -11,7 +11,7 @@ export const useSocket = () => {
   const socket = SocketService.getInstance();
 
   useEffect(() => {
-    // if (!user) return;
+    if (!user) return;
 
     socket.connect();
 
@@ -25,6 +25,7 @@ export const useSocket = () => {
       socket.off("disconnect");
       socket.off("reconnect_attempt");
       socket.off("connect_error");
+      socket.disconnect();
     };
   }, [user, socket, setStatus]);
 
