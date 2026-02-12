@@ -11,7 +11,6 @@ export const useSocket = () => {
   const socket = SocketService.getInstance();
 
   useEffect(() => {
-    console.log("Use Socket");
     
     if (!user || !hydrated) {
       socket.disconnect();
@@ -23,7 +22,7 @@ export const useSocket = () => {
     socket.on("connect", () => setStatus("connected"));
     socket.on("disconnect", () => setStatus("disconnected"));
     socket.io.on("reconnect_attempt", () => setStatus("reconnecting"));
-    socket.on("connect_error", () => setStatus("disconnected"));
+    socket.on("connect_error", () => setStatus("reconnecting"));
 
     return () => {
       socket.off("connect");

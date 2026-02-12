@@ -1,5 +1,4 @@
 import ConversationList from '@/components/chat/ConversationList';
-import SocketInitializer from '@/providers/SocketInitializer';
 import React from 'react'
 
 const AdminLayout = ({children}: {children: React.ReactNode}) => {
@@ -7,7 +6,6 @@ const AdminLayout = ({children}: {children: React.ReactNode}) => {
     <div className="flex h-screen bg-base-200">
       <ConversationList />
       <main className="flex-1 flex flex-col relative">
-        {/* <SocketInitializer>{children}</SocketInitializer> */}
         {children}
       </main>
     </div>

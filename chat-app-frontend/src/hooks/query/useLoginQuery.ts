@@ -14,6 +14,7 @@ export const useLogin = () => {
     mutationFn: (data: LoginFormData) => loginService.post(data),
     onSuccess: (response: Response<AuthResponse>) => {
       Cookies.set("token", response.data.token, { expires: 1 });
+      Cookies.set("user-role", response.data.role, { expires: 1 });
       
       setUser({
         id: response.data.id,

@@ -3,16 +3,31 @@ import type { NextRequest } from 'next/server';
 
 export function proxy(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login') || 
-                     request.nextUrl.pathname.startsWith('/register');
+  const userRole = request.cookies.get('user-role')?.value; // Store role in cookie during login
+  const { pathname } = request.nextUrl;
 
-  if (!token && !isAuthPage) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  if (pathname === '/') {
+    if (!token) return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(
+      new URL(userRole === 'ADMIN' ? '/admin/dashboard' : '/chat', request.url)
+    );
   }
 
-  if (token && isAuthPage) {
-    // For now, redirect to a generic chat path
-    return NextResponse.redirect(new URL('/chat', request.url));
+  if (pathname.startsWith('/admin')) {
+    if (!token || userRole !== 'ADMIN') {
+      return NextResponse.redirect(new URL(token ? '/chat' : '/login', request.url));
+    }
+  }
+
+  if (pathname.startsWith('/chat')) {
+    if (!token || userRole === 'ADMIN') {
+      return NextResponse.redirect(new URL(token ? '/admin/dashboard' : '/login', request.url));
+    }
+  }
+  if ((pathname === '/login' || pathname === '/register') && token) {
+    return NextResponse.redirect(
+      new URL(userRole === 'ADMIN' ? '/admin/dashboard' : '/chat', request.url)
+    );
   }
 
   return NextResponse.next();

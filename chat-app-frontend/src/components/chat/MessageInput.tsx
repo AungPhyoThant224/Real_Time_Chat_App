@@ -57,13 +57,18 @@ export const MessageInput = ({
       className="p-4 border-t border-base-300 flex gap-2"
     >
       <input
+        disabled={!socket.connected}
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Type a message..."
         className="input input-bordered flex-1 focus:input-primary"
       />
-      <button type="submit" className="btn btn-primary btn-square">
+      <button
+        disabled={!socket.connected}
+        type="submit"
+        className="btn btn-primary btn-square"
+      >
         <Send size={20} />
       </button>
     </form>
