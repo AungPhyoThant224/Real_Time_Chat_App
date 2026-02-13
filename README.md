@@ -34,12 +34,24 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
 
 ## Backend Setup
 
+> **⚠️ IMPORTANT:** You must manually create a database in your MySQL server before proceeding with the installation. Prisma does not create the database itself; it only creates the tables within an existing database.
+
+
 1.  **Prerequisites**
     - Node.js (v25)
     - MySQL Server
     - npm
 
-2.  **Installation**
+2.  **Creating Database**
+    - Run the following command in your MySQL terminal or workbench:
+    
+    <br>
+    
+    ```sql
+    CREATE DATABASE your_db_name;
+    ```
+
+3.  **Installation**
     - Navigate to the backend directory and install dependencies:
     
     <br>
@@ -49,7 +61,7 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
     npm install
     ```
 
-3.  **Environment Configuration**
+4.  **Environment Configuration**
     - Create a .env file in the chat-app-backend folder:
 
     <br>
@@ -68,7 +80,7 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
     PORT=8080
     ```
 
-4.  **Database Initialization**
+5.  **Database Initialization**
     - This project uses Prisma 7. Follow these steps to generate the client and sync the schema:
 
     <br>
@@ -84,7 +96,7 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
     npm run seed
     ```
 
-5. **Running the Server**
+6. **Running the Server**
     ```sh
     # Development mode
     npm run dev
