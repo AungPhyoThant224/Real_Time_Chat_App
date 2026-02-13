@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function proxy(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
-  const userRole = request.cookies.get('user-role')?.value; // Store role in cookie during login
+  const userRole = request.cookies.get('user-role')?.value;
   const { pathname } = request.nextUrl;
 
   if (pathname === '/') {

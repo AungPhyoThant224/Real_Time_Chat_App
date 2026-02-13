@@ -7,7 +7,7 @@ export const useMessages = (receiverId: number | null) => {
     queryKey: ["messages", receiverId],
     queryFn: ({ pageParam = 1 }) =>
       messageService.getAll({
-        params: { otherUserId: receiverId, page: pageParam, limit: 20 },
+        params: { otherUserId: receiverId, page: pageParam, limit: 10 },
       }),
     enabled: !!receiverId,
     getNextPageParam: (lastPage: PaginatedResponse<Message>) => {

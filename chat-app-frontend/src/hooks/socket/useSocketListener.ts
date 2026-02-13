@@ -2,10 +2,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import SocketService from "@/socket/socket";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useChatStore } from "@/store/useChatStore";
 
 export const useSocketListener = () => {
   const queryClient = useQueryClient();
   const { user } = useAuthStore();
+  const { setScrollStatus, selectedConversationId } = useChatStore();
   const socket = SocketService.getInstance();
 
   useEffect(() => {
@@ -38,6 +40,7 @@ export const useSocketListener = () => {
       if (user.role === "ADMIN") {
         queryClient.invalidateQueries({ queryKey: ["conversations"] });
       }
+      setScrollStatus(true, newMessage.senderId);
     });
 
     return () => {

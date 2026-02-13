@@ -44,7 +44,6 @@ console.log(errors);
         {errors.email && <span className="text-error text-[10px] mt-1 font-bold italic">{errors.email.message}</span>}
       </div>
 
-      {/* Role Selection */}
       <div className="form-control">
         <label className="label py-1">
           <span className="label-text font-semibold text-base-content/70">Account Role</span>

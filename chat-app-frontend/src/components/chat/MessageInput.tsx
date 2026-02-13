@@ -6,6 +6,7 @@ import { Send } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { Conversation, Message, PaginatedResponse } from "@/types";
+import { useChatStore } from "@/store/useChatStore";
 
 export const MessageInput = ({
   receiverId,
@@ -17,6 +18,7 @@ export const MessageInput = ({
   const [text, setText] = useState("");
   const socket = SocketService.getInstance();
   const user = useAuthStore((state) => state.user);
+  const {setScrollStatus} = useChatStore();
   const queryClient = useQueryClient();
 
   const handleSend = (e: React.SubmitEvent) => {
@@ -78,6 +80,8 @@ export const MessageInput = ({
         return { ...oldData, pages: newPages };
       });
     }
+
+    setScrollStatus(true, receiverId)
 
     setText("");
   };
