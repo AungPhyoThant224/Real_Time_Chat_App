@@ -21,7 +21,7 @@ class SocketService {
         return this.socketInstance;
     }
 
-    public static reconnect(){
+    public static disconnectAndClear(){
         if(this.socketInstance){
             this.socketInstance.disconnect();
             this.socketInstance = null;

@@ -13,7 +13,7 @@ export const Header = ({ header, isDashboard }: { header?: string; isDashboard?:
 
   const handleLogout = () => {
     logout();
-    SocketService.getInstance().disconnect();
+    SocketService.disconnectAndClear();
     router.push("/login");
   };
 

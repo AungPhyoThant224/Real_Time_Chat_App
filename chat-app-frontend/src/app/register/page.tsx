@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-base-300 to-base-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-tr from-base-300 to-base-100 p-4">
       <div className="card w-full max-w-md shadow-xl bg-base-100 border border-base-300">
         <div className="card-body gap-4">
           <div className="flex flex-col items-center text-center gap-2">

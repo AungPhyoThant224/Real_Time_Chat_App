@@ -8,14 +8,16 @@ import { useHydratedAuth } from "@/hooks/store/useHydrateAuth";
 export const useSocket = () => {
   const { setStatus } = useChatStore();
   const { user, hydrated } = useHydratedAuth();
-  const socket = SocketService.getInstance();
 
   useEffect(() => {
-    
     if (!user || !hydrated) {
-      socket.disconnect();
+      SocketService.disconnectAndClear();
+      setStatus("disconnected");
       return;
     }
+
+    SocketService.disconnectAndClear();
+    const socket = SocketService.getInstance();
 
     socket.connect();
 
@@ -31,7 +33,5 @@ export const useSocket = () => {
       socket.off("connect_error");
       socket.disconnect();
     };
-  }, [user, socket, setStatus]);
-
-  return socket;
+  }, [user, setStatus]);
 };
