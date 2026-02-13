@@ -20,6 +20,8 @@ const ConversationList = () => {
   useConversationSync();
 
   const observerTarget = React.useRef(null);
+  const conversations = data?.pages.flatMap((page) => page.data) || [];
+  const isEmpty = status === "success" && conversations.length === 0;
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,6 +62,15 @@ const ConversationList = () => {
           <div className="flex flex-col items-center gap-2 p-8 text-base-content/50">
             <span className="loading loading-spinner loading-md"></span>
             <p className="text-xs font-medium">Loading chats...</p>
+          </div>
+        )}
+
+        {isEmpty && (
+          <div className="flex flex-col items-center justify-center p-8 text-center mt-10">
+            <h3 className="font-bold text-sm">No Active Chats</h3>
+            <p className="text-xs opacity-50 mt-2 leading-relaxed">
+              When customers start a session, they will appear here in real-time.
+            </p>
           </div>
         )}
 

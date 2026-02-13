@@ -20,7 +20,6 @@ export const Header = ({ header, isDashboard }: { header?: string; isDashboard?:
   return (
     <header className="navbar bg-base-100 border-b px-4 md:px-6 flex justify-between shrink-0">
       <div className="flex items-center gap-2">
-        {/* Show burger menu ONLY on mobile AND only in Dashboard */}
         {isDashboard && (
           <label htmlFor="admin-drawer" className="btn btn-ghost btn-sm btn-square lg:hidden">
             <Menu size={20} />

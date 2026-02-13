@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, RegisterFormData } from "@/lib/validations";
 import { useRegister } from "@/hooks/query/useRegisterQuery";
-import { cn } from "@/lib/utils"; // Your clsx + twMerge helper
+import { cn } from "@/lib/utils";
 import { AlertCircle } from "lucide-react";
 
 export const RegisterForm = () => {
@@ -22,8 +22,8 @@ console.log(errors);
     <form onSubmit={handleSubmit((data) => mutate(data))} className="space-y-4">
       {error && (
         <div className="alert alert-error py-3 rounded-xl flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 shrink-0" />
-          <span className="text-xs font-medium">
+          <AlertCircle className="w-5 h-5 shrink-0 text-white" />
+          <span className="font-medium text-white">
             {(error as any)?.response?.data?.error || "Registration failed"}
           </span>
         </div>

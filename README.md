@@ -75,7 +75,7 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
     DATABASE_HOST="localhost"
     DATABASE_PORT=3306
 
-    JWT_SECRET="our_secure_secret_key"
+    JWT_SECRET="your_secure_secret_key"
 
     PORT=8080
     ```

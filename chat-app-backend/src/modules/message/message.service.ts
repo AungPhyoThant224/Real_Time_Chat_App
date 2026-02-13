@@ -11,7 +11,6 @@ export const getMessages = async ({
   cursor: number | null;
   limit: number;
 }) => {
-  // const offset = (page - 1) * limit;
 
   return await prisma.message.findMany({
     where: {

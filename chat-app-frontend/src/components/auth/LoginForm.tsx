@@ -22,7 +22,7 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit((data) => mutate(data))} className="space-y-5">
       {error && (
         <div className="alert alert-error shadow-sm py-3 rounded-xl flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 shrink-5" />
+          <AlertCircle className="w-5 h-5 shrink-5 text-white" />
           <span className="font-medium text-white">
             {(error as any)?.response?.data?.error || "Invalid Credentials"}
           </span>
