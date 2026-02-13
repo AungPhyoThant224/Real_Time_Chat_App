@@ -53,6 +53,7 @@ export const registerChatHandlers = (io: Server, socket: Socket) => {
       });
 
       io.to(`user:${data.receiverId}`).emit("receive_reply", msg);
+      io.to(`admins`).emit("new_user_message", msg);
     },
   );
 };

@@ -50,37 +50,6 @@ export const MessageInput = ({
       return { ...oldData, pages: newPages };
     });
 
-    if (eventName === "admin_reply") {
-      queryClient.setQueryData(["conversations"], (oldData: any) => {
-        if (!oldData) return oldData;
-        let targetConversation: Conversation | null = null;
-
-        const newPages = oldData.pages.map(
-          (page: PaginatedResponse<Conversation>) => {
-            const filteredData = page.data.filter((conv) => {
-              if (conv.userId === tempMessage.receiverId) {
-                targetConversation = {
-                  ...conv,
-                  lastMessage: tempMessage.content,
-                  updatedAt: new Date().toISOString(),
-                };
-                return false;
-              }
-              return true;
-            });
-            return { ...page, data: filteredData };
-          },
-        );
-
-        if (targetConversation) {
-          newPages[0].data.unshift(targetConversation);
-        } else {
-          queryClient.invalidateQueries({ queryKey: ["conversations"] });
-        }
-        return { ...oldData, pages: newPages };
-      });
-    }
-
     setScrollStatus(true, receiverId)
 
     setText("");
