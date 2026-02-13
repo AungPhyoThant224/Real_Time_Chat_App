@@ -2,7 +2,7 @@ import axio, { AxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axio.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api",
   headers: {
     Accept: "application/json",
   },

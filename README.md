@@ -1,4 +1,4 @@
-# Real-Time Chat System (KBZ Technical Assessment)
+# Real-Time Chat System
 
 A secure, real-time communication platform built with Node.js, Next.js, and MySQL. This project facilitates seamless interaction between Users and Admins with features like role-based access, paginated message history, and connection state recovery.
 
@@ -6,7 +6,6 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
 
 - Backend: Node.js, Express, TypeScript
 - Database: MySQL with Prisma 7.3
-- Real-Time: Socket.io
 - Frontend: Next.js
 - Authentication: JWT (JSON Web Tokens)
 
@@ -21,10 +20,19 @@ A secure, real-time communication platform built with Node.js, Next.js, and MySQ
     │       ├── app.ts        # Auth, Message, & Conversation Modules
     │       └── server.ts     # Entry point         
     └── chat-app-frontend/    # Next.js App
+        └── src/
+            ├── app/          # Main Layout
+            ├── components/   # Components
+            ├── hooks/        # Custom Hooks
+            ├── lib/          # Utils, & Validations
+            ├── providers/    # Initializers
+            ├── servies       # Services
+            ├── socket        # Socket Singleton
+            ├── store         # Stores
+            ├── types         # Types
+            └── proxy.ts      # Middleware
 
 ## Backend Setup
-
-The application employs a multi-database "Aggregator" pattern:
 
 1.  **Prerequisites**
     - Node.js (v25)
@@ -47,11 +55,11 @@ The application employs a multi-database "Aggregator" pattern:
     <br>
 
     ```sh
-    DATABASE_URL="mysql://root:password@localhost:3306/kbz_chat_db"
+    DATABASE_URL="mysql://root:password@localhost:3306/your_db_name"
 
     DATABASE_USER="root"
     DATABASE_PASSWORD="password"
-    DATABASE_NAME="kbz_chat_db"
+    DATABASE_NAME="your_db_name"
     DATABASE_HOST="localhost"
     DATABASE_PORT=3306
 
@@ -82,10 +90,41 @@ The application employs a multi-database "Aggregator" pattern:
     npm run dev
     ```
 
+## Frontend Setup
+
+1.  **Prerequisites**
+    - Node.js (v25)
+    - npm
+
+2.  **Installation**
+    - Navigate to the frontend directory and install dependencies:
+    
+    <br>
+
+    ```sh
+    cd chat-app-frontend
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    - Create a .env file in the chat-app-frontend folder:
+
+    <br>
+
+    ```sh
+    NEXT_PUBLIC_SOCKET_URL = "http://localhost:8080"
+    NEXT_PUBLIC_API_URL= "http://localhost:8080/api"
+    ```
+4. **Running the Server**
+    ```sh
+    # Development mode
+    npm run dev
+    ```
+
 ## Default Credentials (Seeded)
 
 After running the seed command, use these to test:
-- Admin Email: ```admin@kbz.com```
+- Admin Email: ```systemadmin@gmail.com```
 - Admin Password: ```admin123```
 
-Note: You can also create new admin account.
+Note: You can also create new admin account for testing.
