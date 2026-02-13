@@ -7,16 +7,12 @@ export const useMessages = (receiverId: number | null) => {
     queryKey: ["messages", receiverId],
     queryFn: ({ pageParam = 1 }) =>
       messageService.getAll({
-        params: { otherUserId: receiverId, page: pageParam, limit: 10 },
+        params: { otherUserId: receiverId, cursor: pageParam, limit: 20 },
       }),
     enabled: !!receiverId,
     getNextPageParam: (lastPage: PaginatedResponse<Message>) => {
-      const { currentPage, hasMore } = lastPage.meta;
-      if (!hasMore) {
-        return undefined;
-      }
-      return currentPage + 1;
+      return lastPage.meta.nextCursor ?? undefined
     },
-    initialPageParam: 1,
+    initialPageParam: null,
   });
 };

@@ -3,15 +3,15 @@ import { prisma } from "../../../prisma/client.js";
 export const getMessages = async ({
   userId,
   otherUserId,
-  page,
+  cursor,
   limit,
 }: {
   userId: number;
   otherUserId: number;
-  page: number;
+  cursor: number | null;
   limit: number;
 }) => {
-  const offset = (page - 1) * limit;
+  // const offset = (page - 1) * limit;
 
   return await prisma.message.findMany({
     where: {
@@ -19,11 +19,11 @@ export const getMessages = async ({
         { senderId: userId, receiverId: otherUserId },
         { senderId: otherUserId, receiverId: userId },
       ],
+      ...(cursor ? { id: { lt: cursor } } : {})
     },
     orderBy: {
       createdAt: "desc",
     },
-    skip: offset,
     take: limit,
     include: {
       sender: {

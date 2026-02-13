@@ -17,7 +17,12 @@ export const ChatWindow = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMessages(activeChatId);
 
-  const messages = data?.pages.flatMap((page) => page.data) || [];
+  const rawMessages = data?.pages.flatMap((page) => page.data) || [];
+
+  const messages = rawMessages.filter(
+    (message, index, self) =>
+      index === self.findIndex((m) => m.id === message.id),
+  );
 
   const observerTarget = useRef<HTMLDivElement>(null);
 
@@ -36,7 +41,10 @@ export const ChatWindow = () => {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   useEffect(() => {
-    if (scrollStatus.status && (selectedConversationId === scrollStatus.id || user?.role === "USER")) {
+    if (
+      scrollStatus.status &&
+      (selectedConversationId === scrollStatus.id || user?.role === "USER")
+    ) {
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
       }

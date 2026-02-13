@@ -47,5 +47,6 @@ export interface PaginatedResponse<T> {
     total?: number;
     hasMore: boolean;
     lastMessageId?: number;
+    nextCursor: number | undefined; 
   };
 }
